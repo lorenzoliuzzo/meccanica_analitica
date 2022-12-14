@@ -1,0 +1,200 @@
+% !TeX root = meccanica_analitica.tex
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={15.3 cm, 21.3 cm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{calc}
+\usepackage{array}
+\usepackage{subfiles}
+\usepackage{etoolbox}
+\usepackage{xparse}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\hypersetup{colorlinks=true,linkcolor=black}
+\renewcommand\thesection{\arabic{section}}
+\titlecontents{chapter}[1.05em]{\bigskip}
+{\contentslabel[\MakeUppercase{\romannumeral\thecontentslabel}]{1em}\enspace\textsc}
+{\hspace*{-1em}\textsc}
+{\hfill\contentspage}
+\titlecontents{section}[1.6em]{\smallskip}
+{\thecontentslabel.\enspace}
+{}
+{\titlerule*[1pc]{.}\contentspage}
+\setcounter{tocdepth}{2}
+
+
+\begin{document}
+
+    \pagenumbering{roman}
+    \thispagestyle{empty}
+
+    % First page with uni logo and title
+    \begin{center}
+
+        \includegraphics[width=1.\linewidth]{unimi_logo.jpg}
+        \centering
+        \vspace{3cm}
+
+        \uppercase{\Large APPUNTI DEL CORSO MECCANICA ANALITICA \par}
+        \vspace{3cm}
+
+        \Large Lorenzo Liuzzo\par
+        \vspace{1.5cm}
+
+        \Large \today
+
+    \end{center}
+
+    \clearpage
+
+    % Table of contents
+    \tableofcontents
+
+    \clearpage
+    \pagenumbering{arabic}
+
+    \section{Equazioni di Lagrange}
+
+        \subsection{Problema ad un corpo}
+        
+            \begin{theorem}[della forza viva]
+                \label{thm:Forza viva}
+
+                Sia $T$ la forza viva (o energia cinetica) come $T = \frac{1}{2}m \dot{x} \cdot \dot{x}$.
+                Allora lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F(x)$, si ha 
+                \[ \dot{T} = F(x) \cdot \dot{x} \] o equivalentemente \[ T(t_1) - T(t_0) = \int_{t_0}^{t_1} F(x) \cdot \dot{x} \, dt \]
+
+                dove $F(x) \cdot \dot{x}$ è la potenza della forza e $\int_{t_0}^{t_1} F(x) \cdot \dot{x}$ è il lavoro svolto dalla forza. 
+
+            \end{theorem}
+            \begin{proof}
+
+                Moltiplicando l'equazione di Newton per $\dot{x}$ e applicando la regola di Leibniz per la derivata di un prodotto, si ottiene
+                \[ \dot{x} \cdot (m \ddot{x}) = \frac{d}{dt}(\frac{1}{2} m \dot{x} \cdot \dot{x}) = \dot{T} \]
+
+            \end{proof} 
+
+            Nel caso di un campo di forze posizionali $F = F(x)$ l'integrale a secondo membro dipende dal movimento $x(t)$ nell'intervallo $(t_0, t_1)$ 
+            attraverso la corrispondente traiettoia $\gamma$. Si ha dunque un integrale curvilineo della forma differenziale: 
+            \[ T(t_1) - T(t_0) = \int_{\gamma} F(x) \cdot dx \]  \\
+            Nel caso in cui la forza sia conservativa, cioè in cui la forza ammetta potenziale, ossia una funzione scalare $V = V(x)$ tale che $F = - grad(V)$, 
+            chiamiamo $V$ energia potenziale (o funzione delle forze). Questa condizione può essere riscritta dicendo che la forma differenziale del lavoro 
+            è esatta, cioè è il differenziale di una funzione, in particolare: $F(x) \cdot dx = -dV(x)$. \\
+
+            \begin{theorem}[dell'energia]
+                \label{thm:Conservazione dell'energia}
+
+                Per un punto soggetto ad un campo di forze posizionali conservativo $F = F(x)$, lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, 
+                si ha \[ E = T + V \quad \dot{E} = 0 \]
+                
+            \end{theorem}
+            \begin{proof}
+
+                \[ F \cdot \dot{x} = - \frac{\partial V}{\partial x} \cdot \frac{dx}{dt} = - \frac{dV}{dt} = - \dot{V} \quad \Longrightarrow \quad \dot{T} = -\dot{V} \]
+                oppure, sfruttando la definizione integrale di lavoro (\ref{thm:Forza viva}) e il fatto che l'integrale curvilineo di una forma differenziale esatta
+                lungo una curva orientata dipenda solo dai suoi estremi (cioè che $\oint F(x) \cdot dx = 0$), si ha
+                \[ \int_{\gamma}F(x) \cdot dx = - \int_{\gamma} dV = V(A) - V(B) \]
+
+            \end{proof}
+            
+            \begin{definition}[costante del moto]
+                \label{def:costante del moto}
+
+                Una variabile dinamica che assume un medesimo valore per ogni punto del moto corrispondente ad una soluzione dell'equazione di Newton è detta \boldmath{costante del moto}.
+            
+            \end{definition}
+            Dunque, la funzione $E(x, \dot{x}) = T(\dot{x}) + V(x)$ è una costante del moto. Pertanto, fissati i dati iniziali $x_0$ e $\dot{x}_0$, e quindi anche $E_0$,
+            il teorema di conservazione dell'energia totale (\ref{thm:Conservazione dell'energia}) va intesa nella forma \[ T - V = E_0 = E(x, \dot{x})\] \\
+            Introducendo la quantitità di moto $p = m \dot{x}$, è possibile riscrivere dell'equazione di Newton come \[ \dot{p} = F \quad \Longleftrightarrow \quad p(t_1) - p(t_0) = \int_{t_0}^{t_1} F dt \] 
+            dove l'integrale della forza nel tempo viene detto impulso della forza. \\
+
+            \begin{theorem}[del momento angolare]
+                \label{thm:momento angolare}
+
+                Per un punto materiale soggetto ad una generica forza $F = F(x, \dot{x}, t)$, lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, si ha
+                \[ \dot{L} = M \] dove $L = x \times p$ è il momento angolare e $M = x \times F $ è il momento angolare della forza.
+                
+            \end{theorem}
+            \begin{proof}
+                
+                Moltiplicando vettorialmente l'equazione di Newton per $x$ e applicando la regola di Leibniz per la derivata di un prodotto, si ottiene
+                \[ F \times x = x \times m \ddot{x} = x \times \frac{d}{dt}(m\dot{x}) = \frac{d}{dt}(x \times p) - \frac{dx}{dt} \times p = \frac{d}{dt}(x \times p) \]
+           
+            \end{proof}
+
+            \begin{corollary}(conservazione del momento angolare)
+                \label{cor:conservazione del momento angolare}
+
+                Per un punto materiale soggetto ad un campo di forze centrali $F = F(x)$, lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, si ha
+                \[ \dot{L} = 0 \] ossia che il momento angolare $L$ è una costante del moto.
+
+            \end{corollary}
+            \begin{proof}
+
+                Si applica il teorema del momento angolare (\ref{thm:momento angolare}). Poichè $F$ è un campo di forze centrali, si ha che la forza è parallela al raggio vettore,
+                perciò $ M =  x \times F = 0 \Longrightarrow \dot{L} = 0 $.
+
+            \end{proof}
+
+            \begin{corollary}(campi centrali e moti bidimensionali)
+                \label{cor:campi centrale e moti bidimensionali}
+
+                Per un punto materiale soggetto ad un campo di forze centrali $F = F(x)$, per ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, 
+                la traiettoia $x = x(t)$ giace in un piano passante per il centro di forza e ortogonale al vettore $L$ momento angolare, determinato dalle 
+                condizioni iniziali $x_0$ e $\dot{x}_0$ che definiscono $L_0 = x_0 \times m \dot{x_0}$.
+
+            \end{corollary}
+            \begin{proof}
+                
+                Per le proprietà del prodotto vettoriale, si ha che $L = x \times p$ è ortogonale a $x$. Ma per la conservazione del momento angolare (\ref{cor:conservazione del momento angolare}),
+                si ha che $L$ è una costante del moto. Dunque, per ogni tempo $t$, il vettore $x(t)$, dovendo essere ortogonale ad un vettore costante, giace in un piano ortogonale a quel vettore.
+
+            \end{proof}
+
+            Prendendo l'equazione della quantità di moto $\dot{p} = F$ e proiettandola su un asse qualsiasi, ad esempio $x$, si ottiene $\dot{p}_x = F_x$ e 
+            quindi se $F_x = 0 \Longrightarrow \dot{p}_x = 0$ e quindi $p_x = cost$. \\
+            Ma per forze posizionali conservative, $F_x = 0$ corrisponde a dire che $V$ è invariante per traslazione lungo l'asse $x$, ossia 
+            \[ \frac{\partial V}{\partial x} = 0 \quad \textrm{ovvero che} \quad V(x + h, ...) = V(x, ...) \quad \forall h \] \\
+            \begin{proposition}
+                \label{prop:simmetrie e conservazioni}
+
+                Se l'energia potenziale $V$ è invariante per traslazioni lungo un asse, allora la componente della quantità di moto $p$ lungo quell'asse è una costante del moto.
+
+            \end{proposition}
+
+
+
+    \clearpage
+    \section{Equazioni di Hamilton}
+
+    \clearpage
+    \section{Principi variazionali}
+
+
+
+\end{document}

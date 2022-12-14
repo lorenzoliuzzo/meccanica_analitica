@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Equazioni di Lagrange}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Problema ad un corpo}{1}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Equazioni di Hamilton}{4}{section.2}%
+\contentsline {section}{\numberline {3}Principi variazionali}{5}{section.3}%
+\contentsfinish 
