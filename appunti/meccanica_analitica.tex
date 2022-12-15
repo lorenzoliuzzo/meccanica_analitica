@@ -82,7 +82,7 @@
 
         \subsection{Problema ad un corpo}
         
-            \begin{theorem}[della forza viva]
+            \begin{theorem}(della forza viva)
                 \label{thm:Forza viva}
 
                 Sia $T$ la forza viva (o energia cinetica) come $T = \frac{1}{2}m \dot{x} \cdot \dot{x}$.
@@ -95,7 +95,7 @@
             \begin{proof}
 
                 Moltiplicando l'equazione di Newton per $\dot{x}$ e applicando la regola di Leibniz per la derivata di un prodotto, si ottiene
-                \[ \dot{x} \cdot (m \ddot{x}) = \frac{d}{dt}(\frac{1}{2} m \dot{x} \cdot \dot{x}) = \dot{T} \]
+                \[ (m \ddot{x}) \cdot \dot{x} = \frac{d}{dt}(\frac{1}{2} m \dot{x} \cdot \dot{x}) = \dot{T} \]
 
             \end{proof} 
 
@@ -106,7 +106,7 @@
             chiamiamo $V$ energia potenziale (o funzione delle forze). Questa condizione può essere riscritta dicendo che la forma differenziale del lavoro 
             è esatta, cioè è il differenziale di una funzione, in particolare: $F(x) \cdot dx = -dV(x)$. \\
 
-            \begin{theorem}[dell'energia]
+            \begin{theorem}(dell'energia)
                 \label{thm:Conservazione dell'energia}
 
                 Per un punto soggetto ad un campo di forze posizionali conservativo $F = F(x)$, lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, 
@@ -122,7 +122,7 @@
 
             \end{proof}
             
-            \begin{definition}[costante del moto]
+            \begin{definition}(costante del moto)
                 \label{def:costante del moto}
 
                 Una variabile dinamica che assume un medesimo valore per ogni punto del moto corrispondente ad una soluzione dell'equazione di Newton è detta \boldmath{costante del moto}.
@@ -133,7 +133,7 @@
             Introducendo la quantitità di moto $p = m \dot{x}$, è possibile riscrivere dell'equazione di Newton come \[ \dot{p} = F \quad \Longleftrightarrow \quad p(t_1) - p(t_0) = \int_{t_0}^{t_1} F dt \] 
             dove l'integrale della forza nel tempo viene detto impulso della forza. \\
 
-            \begin{theorem}[del momento angolare]
+            \begin{theorem}(del momento angolare)
                 \label{thm:momento angolare}
 
                 Per un punto materiale soggetto ad una generica forza $F = F(x, \dot{x}, t)$, lungo ogni soluzione $x = x(t)$ dell'equazione di Newton $m \ddot{x} = F$, si ha
@@ -179,15 +179,72 @@
             Prendendo l'equazione della quantità di moto $\dot{p} = F$ e proiettandola su un asse qualsiasi, ad esempio $x$, si ottiene $\dot{p}_x = F_x$ e 
             quindi se $F_x = 0 \Longrightarrow \dot{p}_x = 0$ e quindi $p_x = cost$. \\
             Ma per forze posizionali conservative, $F_x = 0$ corrisponde a dire che $V$ è invariante per traslazione lungo l'asse $x$, ossia 
-            \[ \frac{\partial V}{\partial x} = 0 \quad \textrm{ovvero che} \quad V(x + h, ...) = V(x, ...) \quad \forall h \] \\
+            \[ \frac{\partial V}{\partial x} = 0 \quad \textrm{ovvero che} \quad V(x + h, ...) = V(x, ...) \quad \forall h \]
             \begin{proposition}
                 \label{prop:simmetrie e conservazioni}
 
                 Se l'energia potenziale $V$ è invariante per traslazioni lungo un asse, allora la componente della quantità di moto $p$ lungo quell'asse è una costante del moto.
 
             \end{proposition}
+            Analogamente per il momento angolare, se ad esempio $M_x = x \cdot \frac{\partial V}{\partial y} - y \cdot \frac{\partial V}{\partial x} = \frac{\partial V}{\partial \varphi} = 0 $, 
+            allora $L_x = const$.
+            \begin{proposition}
+                \label{prop:simmetrie e conservazioni 2}
+                
+                Se l'energia potenziale $V$ è invariante per rotazioni rispetto ad un asse, allora la componente del momento angolare $L$ su quell'asse è una costante del moto.
+            \end{proposition}
+            Inoltre, nei casi in cui la forza sia indipendente dal tempo, cioè $\frac{\partial V}{\partial t} = 0$, si dice che l'energia potenziale è invariante per traslazioni temporali.
+            \begin{proposition}
+                \label{prop:simmetrie e conservazioni 3}
+                
+                Se l'energia potenziale $V$ è invariante per traslazioni temporali, allora l'energia $E = T + V$ è una costante del moto.
+            \end{proposition} 
 
 
+        \subsection{Problema a N corpi}
+            
+            In un sistema di N punti materiali, le N equazioni di Newton del secondo ordine \[ m_k \cdot \ddot{x}_k = F_k \quad (k = 1, 2, ..., N) \] si possono scrivere come
+            un sistema di 2N equazioni di primo ordine \[ \dot{x}_k = \frac{p_k}{m_k} \quad \quad \dot{p}_k = F_k \quad (k = 1, 2, ..., N) \]
+            Si introducono la quantitità di moto totale del sistema, il momento angolare totale del sistema, la risultante delle forze e il momento risultante delle forze
+            rispettivamente \[ p = \sum_k p_k = \sum_k m_k \dot{x}_k \] \[ L = \sum_k L_k = \sum_k x_k \times p_k \] \[ R = \sum_k F_k \] \[ M =  \sum_k M_k = \sum_k x_k \times F_k \]
+            Le ipotesi sulle forze sono:
+            \begin{itemize} 
+                \item ogni forza può essere decomposta in una componente dovuta agli altri punti del sistema e una dovuta ad agenti esterni, cioè $F_k = F_k^{(int)} + F_k^{(est)}$.
+                \item ogni forza interna può essere decomposta nella somma di forze dovute singolarmente ad ogni altro punto del sistema, cioè $F_k^{(int)} = \sum_{j \neq k} F_{kj}$.
+                \item ogni forza rispetti il principio di azione e reazione, cioè $F_{kj} = - F_{jk}$.
+                \item ogni forza sia centrale, cioè $F_{kj} = f_{kj}(r_{kj}) \cdot \frac{x_k - x_j}{r_{kj}}$, dove $f_{kj} = f_{jk}$ e $r_{kj} = \Vert x_k - x_k \Vert$.
+            \end{itemize}
+            Le forze che soddisfano queste ipotesi sono anche dette forze classiche. \\
+
+            \begin{theorem}(equazioni cardinali della dinamica)
+                \label{thm:equazioni cardinali}
+
+                Lungo le soluzioni del sistema di equazioni di Newton per un sistema a N punti materiali soggetto a forze di tipo classico si hanno le seguenti relazioni,
+                dette rispettivamente la prima e la seconda equazione cardinale: \[ \dot{p} = R^{(est)} \quad \quad \dot{L} = M^{(est)} \]
+                dove $R^{(est)}$ e $M^{(est)}$ sono la risultante e il momento risultante delle forze esterne.
+
+            \end{theorem}
+            \begin{corollary}(condizioni necessarie per l'equilibrio di un sistema)
+                \label{cor:equilibrio di un sistema}
+
+                Un sistema a N punti materiali soggetto a forze di tipo classico è in equilibrio se e solo se \[ R^{(est)} = 0 \quad \text{e} \quad M^{(est)} = 0 \]
+
+            \end{corollary}
+
+            \begin{theorem}(potenziale delle forze interne)
+                \label{thm:potenziale delle forze interne}
+
+                Per forze interne di tipo classico, il lavoro elementare delle forze interne è un differenziale esatto e si ha 
+                \[ \sum_k F_k^{(int)} \cdot dx_k = -dV^{(int)} = -d[\frac{1}{2} \sum_{1 \leq k, j \leq N}^{k \neq j} V_{kj}(r_{kj})] \]
+
+            \end{theorem}
+            \begin{proof}
+
+                Consideriamo una coppia di punti $k$ e $j$. Poichè si hanno forze di tipo classico, essendo dunque $F_{kj} = - F_{jk}$, 
+                possiamo prendere $r_{kj} = x_k - x_j$ e scrivere \[ F_{kj} \cdot dx_k + F_{jk} \cdot dx_j = F_{kj} \cdot dr_{kj} \]
+                ossia ci siamo ridotti al problema di un solo corpo soggetto ad una forza centrale con simmetria sferica.
+
+            \end{proof}
 
     \clearpage
     \section{Equazioni di Hamilton}
