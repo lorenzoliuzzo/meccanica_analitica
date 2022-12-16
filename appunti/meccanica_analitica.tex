@@ -13,6 +13,7 @@
 \usepackage{caption}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{mathtools}
 \usepackage{subfig}
 \usepackage{titlesec}
 \usepackage{titletoc}
@@ -60,7 +61,7 @@
         \centering
         \vspace{3cm}
 
-        \uppercase{\Large APPUNTI DEL CORSO MECCANICA ANALITICA \par}
+        \uppercase{\Large MECCANICA ANALITICA: \\ APPUNTI DEL CORSO \par}
         \vspace{3cm}
 
         \Large Lorenzo Liuzzo\par
@@ -78,7 +79,7 @@
     \clearpage
     \pagenumbering{arabic}
 
-    \section{Equazioni di Lagrange}
+    \section{Lagrangiana}
 
         \subsection{Problema ad un corpo}
         
@@ -101,7 +102,7 @@
 
             Nel caso di un campo di forze posizionali $F = F(x)$ l'integrale a secondo membro dipende dal movimento $x(t)$ nell'intervallo $(t_0, t_1)$ 
             attraverso la corrispondente traiettoia $\gamma$. Si ha dunque un integrale curvilineo della forma differenziale: 
-            \[ T(t_1) - T(t_0) = \int_{\gamma} F(x) \cdot dx \]  \\
+            \[ T(t_1) - T(t_0) = \int_{\gamma} F(x) \cdot dx \] \\
             Nel caso in cui la forza sia conservativa, cioè in cui la forza ammetta potenziale, ossia una funzione scalare $V = V(x)$ tale che $F = - grad(V)$, 
             chiamiamo $V$ energia potenziale (o funzione delle forze). Questa condizione può essere riscritta dicendo che la forma differenziale del lavoro 
             è esatta, cioè è il differenziale di una funzione, in particolare: $F(x) \cdot dx = -dV(x)$. \\
@@ -129,9 +130,9 @@
             
             \end{definition}
             Dunque, la funzione $E(x, \dot{x}) = T(\dot{x}) + V(x)$ è una costante del moto. Pertanto, fissati i dati iniziali $x_0$ e $\dot{x}_0$, e quindi anche $E_0$,
-            il teorema di conservazione dell'energia totale (\ref{thm:Conservazione dell'energia}) va intesa nella forma \[ T - V = E_0 = E(x, \dot{x})\] \\
-            Introducendo la quantitità di moto $p = m \dot{x}$, è possibile riscrivere dell'equazione di Newton come \[ \dot{p} = F \quad \Longleftrightarrow \quad p(t_1) - p(t_0) = \int_{t_0}^{t_1} F dt \] 
-            dove l'integrale della forza nel tempo viene detto impulso della forza. \\
+            il teorema di conservazione dell'energia totale (\ref{thm:Conservazione dell'energia}) va inteso nella forma \[ T - V = E_0 = E(x, \dot{x})\] \\
+            Introducendo la quantitità di moto $p = m \dot{x}$, è possibile riscrivere dell'equazione di Newton come 
+            \[ \dot{p} = F \quad \longleftrightarrow \quad p(t_1) - p(t_0) = \int_{t_0}^{t_1} F dt \] dove l'integrale della forza nel tempo viene detto impulso della forza. 
 
             \begin{theorem}(del momento angolare)
                 \label{thm:momento angolare}
@@ -143,7 +144,7 @@
             \begin{proof}
                 
                 Moltiplicando vettorialmente l'equazione di Newton per $x$ e applicando la regola di Leibniz per la derivata di un prodotto, si ottiene
-                \[ F \times x = x \times m \ddot{x} = x \times \frac{d}{dt}(m\dot{x}) = \frac{d}{dt}(x \times p) - \frac{dx}{dt} \times p = \frac{d}{dt}(x \times p) \]
+                \[ M = x \times F = x \times m \ddot{x} = x \times \frac{d}{dt}(m\dot{x}) = \frac{d}{dt}(x \times p) - \frac{dx}{dt} \times p = \frac{d}{dt}(x \times p) = \dot{L} \]
            
             \end{proof}
 
@@ -179,7 +180,7 @@
             Prendendo l'equazione della quantità di moto $\dot{p} = F$ e proiettandola su un asse qualsiasi, ad esempio $x$, si ottiene $\dot{p}_x = F_x$ e 
             quindi se $F_x = 0 \Longrightarrow \dot{p}_x = 0$ e quindi $p_x = cost$. \\
             Ma per forze posizionali conservative, $F_x = 0$ corrisponde a dire che $V$ è invariante per traslazione lungo l'asse $x$, ossia 
-            \[ \frac{\partial V}{\partial x} = 0 \quad \textrm{ovvero che} \quad V(x + h, ...) = V(x, ...) \quad \forall h \]
+            \[ \frac{\partial V}{\partial x} = 0 \quad \textrm{ovvero che} \quad V(x + h, \dots) = V(x, \dots) \quad \forall h \]
             \begin{proposition}
                 \label{prop:simmetrie e conservazioni}
 
@@ -187,7 +188,7 @@
 
             \end{proposition}
             Analogamente per il momento angolare, se ad esempio $M_x = x \cdot \frac{\partial V}{\partial y} - y \cdot \frac{\partial V}{\partial x} = \frac{\partial V}{\partial \varphi} = 0 $, 
-            allora $L_x = const$.
+            allora $L_x = cost$.
             \begin{proposition}
                 \label{prop:simmetrie e conservazioni 2}
                 
@@ -203,8 +204,8 @@
 
         \subsection{Problema a N corpi}
             
-            In un sistema di N punti materiali, le N equazioni di Newton del secondo ordine \[ m_k \cdot \ddot{x}_k = F_k \quad (k = 1, 2, ..., N) \] si possono scrivere come
-            un sistema di 2N equazioni di primo ordine \[ \dot{x}_k = \frac{p_k}{m_k} \quad \quad \dot{p}_k = F_k \quad (k = 1, 2, ..., N) \]
+            In un sistema di N punti materiali, le N equazioni di Newton del secondo ordine \[ m_k \cdot \ddot{x}_k = F_k \quad (k = 1, 2, \dots, N) \] si possono scrivere come
+            un sistema di 2N equazioni di primo ordine \[ \dot{x}_k = \frac{p_k}{m_k} \quad \quad \dot{p}_k = F_k \quad (k = 1, 2, \dots, N) \]
             Si introducono la quantitità di moto totale del sistema, il momento angolare totale del sistema, la risultante delle forze e il momento risultante delle forze
             rispettivamente \[ p = \sum_k p_k = \sum_k m_k \dot{x}_k \] \[ L = \sum_k L_k = \sum_k x_k \times p_k \] \[ R = \sum_k F_k \] \[ M =  \sum_k M_k = \sum_k x_k \times F_k \]
             Le ipotesi sulle forze sono:
@@ -212,9 +213,9 @@
                 \item ogni forza può essere decomposta in una componente dovuta agli altri punti del sistema e una dovuta ad agenti esterni, cioè $F_k = F_k^{(int)} + F_k^{(est)}$.
                 \item ogni forza interna può essere decomposta nella somma di forze dovute singolarmente ad ogni altro punto del sistema, cioè $F_k^{(int)} = \sum_{j \neq k} F_{kj}$.
                 \item ogni forza rispetti il principio di azione e reazione, cioè $F_{kj} = - F_{jk}$.
-                \item ogni forza sia centrale, cioè $F_{kj} = f_{kj}(r_{kj}) \cdot \frac{x_k - x_j}{r_{kj}}$, dove $f_{kj} = f_{jk}$ e $r_{kj} = \Vert x_k - x_k \Vert$.
+                \item ogni forza sia centrale, cioè $F_{kj} = f_{kj}(r_{kj}) \cdot \frac{x_k - x_j}{r_{kj}}$, dove $f_{kj} = f_{jk}$ e $r_{kj} = \Vert x_k - x_j \Vert$.
             \end{itemize}
-            Le forze che soddisfano queste ipotesi sono anche dette forze classiche. \\
+            Le forze che soddisfano queste ipotesi sono anche dette forze classiche.
 
             \begin{theorem}(equazioni cardinali della dinamica)
                 \label{thm:equazioni cardinali}
@@ -235,19 +236,157 @@
                 \label{thm:potenziale delle forze interne}
 
                 Per forze interne di tipo classico, il lavoro elementare delle forze interne è un differenziale esatto e si ha 
-                \[ \sum_k F_k^{(int)} \cdot dx_k = -dV^{(int)} = -d[\frac{1}{2} \sum_{1 \leq k, j \leq N}^{k \neq j} V_{kj}(r_{kj})] \]
+                \[ F^{(int)} \cdot dx = \sum_k F_k^{(int)} \cdot dx_k = -d[\frac{1}{2} \sum_{k, j}^{k \neq j} V_{kj}(r_{kj})] = -dV^{(int)} \]
 
             \end{theorem}
             \begin{proof}
 
-                Consideriamo una coppia di punti $k$ e $j$. Poichè si hanno forze di tipo classico, essendo dunque $F_{kj} = - F_{jk}$, 
-                possiamo prendere $r_{kj} = x_k - x_j$ e scrivere \[ F_{kj} \cdot dx_k + F_{jk} \cdot dx_j = F_{kj} \cdot dr_{kj} \]
+                Consideriamo una coppia di punti materiali $k$ e $j$. Poichè su essi agiscono soltanto forze di tipo classico ed essendo valido il principio di azione e reazione 
+                $F_{kj} = - F_{jk}$, possiamo prendere $r_{kj} = x_k - x_j$ e scrivere \[ F_{kj} \cdot dx_k + F_{jk} \cdot dx_j = F_{kj} \cdot dr_{kj} \]
                 ossia ci siamo ridotti al problema di un solo corpo soggetto ad una forza centrale con simmetria sferica.
 
             \end{proof}
 
+            \begin{theorem}(problema dei due corpi)
+                \label{thm:problema dei due corpi}
+
+                Per un sistema di due corpi soggetti soltanto a forze interne, $R^{(est)} = 0$, soddisfacenti il principio di azione e reazione, si ha 
+                \[ \ddot{x}_{CM} = 0 \quad \quad \mu \cdot \ddot{r} = F(r) \] dove $\mu$ è la massa ridotta $\mu = \frac{m_1 \cdot m_2}{m_1 + m_2}$ e $r$ è la distanza tra i due corpi.
+
+            \end{theorem}
+            \begin{proof}
+                
+                Dalle equazioni di Newton per i due corpi, sommando membro a membro si ha che \[ m_1 \cdot \ddot{x}_1 + m_2 \cdot \ddot{x}_2 = F_{12} + F_{21} = 0 \] da cui si deduce che 
+                \[ \ddot{x}_{CM} = \frac{m_1 \cdot \ddot{x}_1 + m_2 \cdot \ddot{x}_2}{m_1 + m_2} = 0 \]
+                Invece, sottraendo membro a membro le due equazioni divise rispettivamente per le masse, si ha \[ \ddot{x}_1 - \ddot{x}_2 = \frac{F_{12}}{m_1} - \frac{F_{21}}{m_2} = 2 * \frac{F(r)}{\mu} \]
+                da cui deduciamo \[ \mu \cdot \ddot{r} = F(r) \]
+
+            \end{proof}
+
+            
+        \subsection{Spazio ambiente e coordinate generalizzate}
+            
+            Spesso definiamo globalmente una superficie mediante un'equazione implicita $F(x, y, z) = 0$. Tale rapprestazione impone un vincolo sulle coordinate. 
+            \begin{definition}(carta locale e formula di immersione)
+
+                Si ha una rappresentata parametrica locale o una carta locale quando è assegnata una funzione \[ F: U \rightarrow \mathbb{R}^n, \quad U \subseteq \mathbb{R}^{n - 1} \quad \text{aperto} \quad 
+                \text{t.c.} \quad x = F(q), \quad q = (q_1, \dots, q_(n - 1)) \] Si dice 'formula di immersione' la funzione $x = x(q)$ che porta dalla carta locale alla superficie nello spazio ambiente.
+                
+            \end{definition}
+
+            \begin{definition}(linee e vettori coordinati)
+
+                Data una carta $U$ e una superficie $M$, si definiscono linee coordinate quelle linee di $M$ lungo le quali una sola delle coordinate rimane costante, corrispondenti alle linee $q_i = cost$ sulla carta.
+                Preso un punto $P \in M$ di coordinate $q = (q_1, \dots, q_n)$ nella carta $x = x(q)$, sono detti vettori coordinati i vettori \[ \frac{\partial x}{\partial q_i} \quad (i = 1, \dots, n) \]
+                Tali vettori, spiccati dal punto $P$ e tangenti alle linee coordinate $q_1, \dots, q_n$, sottengono il piano tangente $T_P M$ alla varietà $M$ in $P$, dunque debbono essere linearmenti indipendenti.
+                Introducendo la matrice \[ g_{ik} = \frac{\partial x}{\partial q_i} \cdot \frac{\partial x}{\partial q_k} \] questa condizione di lineare indipendenza si traduce in \[ det(g_{ik}) \neq 0 \]
+                Per assegnare un movimento $x = x(t)$ sulla superficie $M$, basterà comporlo con la funzione $q = q(t)$ sulla carta locale, in modo tale da ottenere 
+                \[ x = x(q(t)) \quad \quad v = \frac{dx}{dt} = \frac{\partial x}{\partial q} \dot{q} = \sum_i \frac{\partial x}{\partial q_i} \dot{q}_i \] 
+
+            \end{definition}
+
+            \begin{theorem}(formula del binomio lagrangiano)
+                \label{thm:binomio lagrangiano}
+
+                Vale \[ \ddot{x} \cdot \frac{\partial x}{\partial q_i} = \frac{d}{dt} \frac{\partial \frac{1}{2} \dot{x}^2}{\partial \dot{q}_i} - \frac{\partial \frac{1}{2} \dot{x}^2}{\partial q_i} \quad (i = 1, \dots, n) \]
+                che in termini di energia cinetica $T$ diventa \[ m\ddot{x} \cdot \frac{\partial x}{\partial q_i} = \frac{d}{dt} \frac{\partial T}{\partial \dot{q}_i} - \frac{\partial T}{\partial q_i} \quad (i = 1, \dots, n) \] 
+                
+            \end{theorem}
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{lemma}
+                
+                Valgono le relazioni \[ \frac{\partial v}{\partial \dot{q}_i} = \frac{\partial x}{\partial q_i} \quad \quad
+                                        \frac{\partial v}{\partial q_i} = \frac{d}{dt} \frac{\partial x}{\partial q_i} \quad \quad (i = 1, \dots, n) \] 
+
+            \end{lemma}
+            \begin{proof}
+                
+                La prima si ricava dal fatto che $v = \frac{\partial x}{\partial q_i} \dot{q}_i$ mentre la seconda segue usando la regola per la derivata del prodotto 
+                \[ \frac{d}{dt} \frac{\partial x}{\partial q_i} = \sum_k \frac{\partial}{\partial q_k} (\frac{\partial x}{\partial q_i}) \dot{q}_k 
+                                                                = \sum_k \frac{\partial^2 x}{\partial q_k \partial q_i} \dot{q}_k 
+                                                                = \frac{\partial}{\partial q_i} (\sum_k \frac{\partial x}{\partial q_k} \dot{q}_k) = \frac{\partial v}{\partial q_i} \]
+
+            \end{proof}
+            Pertanto, fissata una carta con formula di immersione $x = x(q)$, si esprime l'energia cinetica in funzione delle $q$ e delle $\dot{q}$ come 
+            \[ T = \frac{1}{2} \sum_{i, k} a_{ik}(q) \dot{q}_i \dot{q}_k \quad \quad a_{ik} = \frac{m}{2}g_{ik} = \frac{m}{2} \frac{\partial x}{\partial q_i} \frac{\partial x}{\partial q_k} \]
+
+
+        \subsection{Equazioni di Lagrange}
+
+            \begin{definition}(vincolo)
+                        
+            \end{definition}
+
+            \begin{definition}(reazione vincolare)
+
+            \end{definition}
+
+            \begin{definition}(Lagrangiana)
+                \label{def:Lagrangiana}
+
+                Si consideri un punto materiale su una superficie rappresentata in una carta locale da una formula di immersione $x = x(q)$ con $q = (q_1, \dots, q_n)$ e si ammetta che valga 
+                l'equazione di Newton-d'Alembert \[ m \ddot{x} = F + F^{(v)} \]
+                Moltiplicando scalarmente l'equazione di Newton per i vettori coordinati $\frac{\partial x}{\partial q_i} \quad (i = 1, \dots, n) $, poichè essi giacciono nel piano tangente alla superficie 
+                ed essendo $F^{(v)}$ ortogonale alla superficie per definizione di reazione vincolare si ha che \[ F^{(v)} \cdot \frac{\partial x}{\partial q_i} = 0 \]
+                e dunque \[ m \ddot{x} \cdot \frac{\partial x}{\partial q_i} = F \cdot \frac{\partial x}{\partial q_i} \]
+                Nel caso di forze derivanti da potenziale, per cui $ F = - grad(V) $, si ottiene che \[ F \cdot \frac{\partial x}{\partial q_i} = - \frac{\partial V}{\partial q_i} \quad \quad (i = 1, \dots, n) \]
+                Rielaborando il primo membro con la formula del binomio lagrangiano \ref{thm:binomio lagrangiano} si ottiene 
+                \[ \frac{d}{dt} \frac{\partial T}{\partial \dot{q}_i} - \frac{\partial T}{\partial q_i} = - \frac{\partial V}{\partial q_i} \] 
+                Si definisce dunque la funzione lagrangiana $L = L(q, \dot{q})$ come la differenza tra l'energia cinetica e l'energia potenziale del sistema, ossia \[ L = T - V \]
+                Si osserva come $L: TM \rightarrow \mathbb{R}$ sia definita intrinsecamente nello spazio degli stati $TM$, il fibrato tangente dello spazio $M$ detto spazio delle configurazioni. 
+                
+            \end{definition}
+
+            \begin{theorem}(equazioni di Eulero-Lagrange)
+                \label{thm:equazioni di Eulero-Lagrange}
+
+                Si consideri un punto materiale la cui posizione sia rappresentata in una carta locale $x = x(q)$ da coordinate $q = (q_1, \dots, q_n)$, allora
+                i movimenti $q = q(t)$ sulla carta corrispondenti alle soluzioni dell'equazione di Newton \[ m \ddot{x} = - grad(V) + F^{(v)} \] sono soluzioni delle
+                equazioni di Eulero-Lagrange nella carta delle coordinate $q$ \[ \frac{d}{dt} \frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0 \quad \quad (i = 1, \dots, n) \]
+                
+            \end{theorem}
+            \begin{proof}
+                
+                Proiettando le equazioni di Newton sulle linee coordinate si ha \[ \frac{d}{dt} \frac{\partial T}{\partial \dot{q}_i} - \frac{\partial T}{\partial q_i} = - \frac{\partial V}{\partial q_i} \quad \quad (i = 1, \dots, n) \]
+                Definita la lagrangiana $L = L(q, \dot{q})$, poichè $V = V(q)$, si osserva che $\frac{\partial T}{\partial \dot{q}_i} = \frac{\partial L}{\partial \dot{q}_i}$ e quindi si ha la tesi.
+
+            \end{proof}
+
+            \begin{definition}(forza generalizzata)
+                
+                Nel caso generale in cui la forza attiva dipenda anche dalla velocità o dal tempo, cioè $F = F(q, \dot{q}, t)$, si introduce la forza generalizzata $Q$ come
+                \[ Q_i = F \cdot \frac{\partial x}{\partial q_i} \quad \quad (i = 1, \dots, n) \] e le equazioni di Eulero-Lagrange prendono la forma di 
+                \[ \frac{d}{dt} \frac{\partial T}{\partial \dot{q}_i} - \frac{\partial T}{\partial q_i} = Q_i \quad \quad (i = 1, \dots, n) \]
+                Se consideriamo il lavoro elementare $\delta W$ della forza $F$ si ha \[ \delta W = F \cdot dx = \sum_i Q_i dq_i = Q dq \]
+                
+            \end{definition}
+
+            \begin{theorem}
+                
+                Per un sistema a N punti con vincoli perfetti, in una carta locale con coordinate $q = (q_1, \dots, q_n)$, i movimenti $q = q(t)$ sulla carta corrispondenti
+                alle soluzioni del sistema di equazioni di Newton-d'Alembert sono soluzioni delle equazioni di Eulero-Lagrange \ref{thm:equazioni di Eulero-Lagrange}
+                La condizione geometrica di perfezione del vincolo è equivalente alla condizione che sia nullo il lavoro totale delle reazioni vincolari per ogni spostamento compatibile.
+                Infatti, gli spostamenti infinitesimi compatibili con i vincoli si esprimono nella forma \[ dX = \frac{\partial X}{\partial q} dq \] da cui si ottiene l'espressione 
+                del lavoro elementare totale delle reazioni vincolari \[ \delta W = \sum_i F_i^{(v)} \cdot dx_i = F^{(v)} \cdot dX = F^{(v)} \cdot \frac{\partial X}{\partial q} dq \]
+            \end{theorem}
+
+            \begin{theorem}(dell'energia generalizzata)
+                \label{thm:di Jacobi}
+
+                Per un sistema lagrangiano con lagrangiana $L = L(q, \dot{q})$ in una carta locale assegnata, per ogni movimento $q = q(t)$ soddisfacente le equazioni di Eulero-Lagrange \ref{thm:equazioni di Eulero-Lagrange}
+                si ha \[ \dot{\mathcal{E}} = - \frac{\partial L}{\partial t} \] dove $\dot{\mathcal{E}} = \dot{\mathcal{E}}(q, \dot{q}, t)$ è l'energia generalizzata del sistema definita come 
+                \[ \dot{\mathcal{E}} \coloneqq p\dot{q} - L \quad \quad p \coloneqq \frac{\partial L}{\partial \dot{q}} \]
+                In particolare, se la lagrangiana è invariante per traslazioni temporali ossia non dipende la tempo, si ha che l'energia generalizzata è una costante del moto.  
+
+            \end{theorem}
+
+            
+
     \clearpage
-    \section{Equazioni di Hamilton}
+    \section{Hamiltoniana}
 
     \clearpage
     \section{Principi variazionali}

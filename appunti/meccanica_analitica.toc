@@ -1,6 +1,8 @@
-\contentsline {section}{\numberline {1}Equazioni di Lagrange}{1}{section.1}%
+\contentsline {section}{\numberline {1}Lagrangiana}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Problema ad un corpo}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Problema a N corpi}{3}{subsection.1.2}%
-\contentsline {section}{\numberline {2}Equazioni di Hamilton}{5}{section.2}%
-\contentsline {section}{\numberline {3}Principi variazionali}{6}{section.3}%
+\contentsline {subsection}{\numberline {1.3}Spazio ambiente e coordinate generalizzate}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Equazioni di Lagrange}{6}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Hamiltoniana}{8}{section.2}%
+\contentsline {section}{\numberline {3}Principi variazionali}{9}{section.3}%
 \contentsfinish 
